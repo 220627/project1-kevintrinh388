@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.revature.models.Reimbursement;
@@ -50,11 +51,12 @@ public class EmployeeDAO implements EmployeeDAOInterface{
 	@Override
 	public boolean insertReimbursement(Reimbursement reimbursement) {
 		try(Connection conn = ConnectionUtil.getConnection()){
+			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 			String sql = "INSERT INTO ers_reimbursement (reimb_amount, reimb_submitted, reimb_author, reimb_status_id, reimb_type_id)\r\n"
 					+ "VALUES (?, ?, ?,?,?);";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, reimbursement.getReimb_amount());
-			ps.setTimestamp(2, reimbursement.getReimb_submitted());
+			ps.setTimestamp(2, timestamp);
 			ps.setInt(3, reimbursement.getReimb_author());
 			ps.setInt(4, reimbursement.getReimb_status_id());
 			ps.setInt(5, reimbursement.getReimb_type_id());

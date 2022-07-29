@@ -3,6 +3,9 @@ package com.revature;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import com.revature.controllers.AuthController;
+import com.revature.controllers.EmployeeController;
+import com.revature.controllers.FinanceManagerController;
 import com.revature.utils.ConnectionUtil;
 
 import io.javalin.Javalin;
@@ -28,8 +31,18 @@ public class Launcher {
 		).start(3000); // we need .start() to start our Java server on port 3000
 		
 		// instantiate controllers
+		AuthController ac = new AuthController();
+		EmployeeController ec = new EmployeeController();
+		FinanceManagerController fmc = new FinanceManagerController();
 		
-		// endpoint handlers below
+		// End-point handlers below
+		app.post("/login", ac.loginHandler); // will handle both normal employees and managers
+		
+		app.get("/reimbursements/:reimb_author", ec.getUserReimbursementsHandler);
+		app.post("/reimbursements", ec.insertReimbursementHandler);
+		
+		app.get("/reimbursements/manager/:reimb_status_id", fmc.getReimbursementsByStatusIdHandler);
+		app.put("/reimbursements/status/manager/:reimb_id", fmc.updateReimbursementStatus);
 	}
 	
 }

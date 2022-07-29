@@ -33,6 +33,14 @@ public class Reimbursement {
 		this.reimb_status_id = reimb_status_id;
 		this.reimb_type_id = reimb_type_id;
 	}
+	
+	public Reimbursement(int reimb_amount, int reimb_author, int reimb_status_id, int reimb_type_id) {
+		super();
+		this.reimb_amount = reimb_amount;
+		this.reimb_author = reimb_author;
+		this.reimb_status_id = reimb_status_id;
+		this.reimb_type_id = reimb_type_id;
+	}
 	public int getReimb_id() {
 		return reimb_id;
 	}

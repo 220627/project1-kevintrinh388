@@ -13,7 +13,7 @@ public class AuthDAO {
 	
 	public User login(String username, String password) {
 		try(Connection conn = ConnectionUtil.getConnection()){
-			String sql = "SELECT * FROM users WHERE username = ? AND password = ?;";
+			String sql = "SELECT * FROM ers_users WHERE ers_username = ? AND ers_password = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			ps.setString(2, password);
