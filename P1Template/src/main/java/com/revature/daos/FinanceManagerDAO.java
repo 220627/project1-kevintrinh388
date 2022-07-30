@@ -14,6 +14,8 @@ public class FinanceManagerDAO implements FinanceManagerDAOInterface{
 	ReimbursementStatusDAO rsDAO = new ReimbursementStatusDAO();
 	ReimbursementTypeDAO rtDAO = new ReimbursementTypeDAO();
 
+	// make a getAllReimbursements()
+	
 	@Override
 	public ArrayList<Reimbursement> getReimbursementsByStatusId(int reimb_status_id) {
 		// managers can get reimbursements by status id
