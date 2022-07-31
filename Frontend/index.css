@@ -90,7 +90,7 @@ h1 {
 }
 
 .btn:hover {
-  transform: scale(0.98);
+  transform: scale(0.95);
 }
 
 #about {
@@ -108,8 +108,4 @@ h1 {
 #about h2 {
   margin: 30px 0;
   color: var(--primary-color);
-}
-
-.social a {
-  margin: 0 5px;
 }
