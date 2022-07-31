@@ -5,10 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.revature.models.ReimbursementType;
 import com.revature.utils.ConnectionUtil;
 
 public class ReimbursementTypeDAO {
+	public static Logger log = LogManager.getLogger();
 	public ReimbursementType getReimbursementTypeById(int reimb_type_id) {
 		try(Connection conn = ConnectionUtil.getConnection()){
 			String sql = "SELECT * FROM ers_reimbursement_type WHERE reimb_type_id = ?;";
@@ -20,10 +24,12 @@ public class ReimbursementTypeDAO {
 						rs.getInt("reimb_type_id"),
 						rs.getString("reimb_type")
 				);
+				log.info("GET REIMBURSEMENT TYPE BY ID SUCCESSFUL");
 				return reimbursementType;
 			}
 		}
 		catch(SQLException e) {
+			log.warn("GET REIMBURSEMENT TYPE BY ID FAILED");
 			System.out.println("GET REIMBURSEMENT TYPE BY ID FAILED");
 			e.printStackTrace();
 		}

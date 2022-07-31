@@ -5,10 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.revature.models.User;
 import com.revature.utils.ConnectionUtil;
 
 public class UserDAO {
+	public static Logger log = LogManager.getLogger();
 	public User getUserById(int ers_users_id) {
 		try(Connection conn = ConnectionUtil.getConnection()){
 			String sql = "SELECT * FROM ers_users WHERE ers_users_id = ?;";
@@ -25,10 +29,12 @@ public class UserDAO {
 						rs.getString("user_email"),
 						rs.getInt("user_role_id")
 				);
+				log.info("GET USER BY ID SUCCESSFUL");
 				return user;
 			}
 		}
 		catch(SQLException e) {
+			log.warn("GET USER BY ID FAILED");
 			System.out.println("GET USER BY ID FAILED");
 			e.printStackTrace();
 		}

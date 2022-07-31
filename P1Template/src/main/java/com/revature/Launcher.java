@@ -3,6 +3,9 @@ package com.revature;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.revature.controllers.AuthController;
 import com.revature.controllers.EmployeeController;
 import com.revature.controllers.FinanceManagerController;
@@ -11,12 +14,13 @@ import com.revature.utils.ConnectionUtil;
 import io.javalin.Javalin;
 
 public class Launcher {
-
+	public static Logger log = LogManager.getLogger();
 	public static void main(String[] args) {
 		System.out.println("WELCOME TO THE EMPLOYEE REIMBURSEMENT SYSTEM");
 		
 		try(Connection conn = ConnectionUtil.getConnection()){
 			System.out.println("CONNECTION SUCCESSFUL :)");
+			log.info("CONNECTION SUCCESSFUL");
 		}
 		catch(SQLException e) {
 			e.printStackTrace();

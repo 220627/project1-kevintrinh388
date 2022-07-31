@@ -5,10 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.revature.models.User;
 import com.revature.utils.ConnectionUtil;
 
 public class AuthDAO {
+	public static Logger log = LogManager.getLogger();
 	UserRoleDAO uDAO = new UserRoleDAO();
 	
 	public User login(String username, String password) {
@@ -33,11 +37,13 @@ public class AuthDAO {
 						rs.getInt("user_role_id")
 				);
 				u.setUser_role(uDAO.getUserRoleById(rs.getInt("user_role_id")));
+				log.info("USER LOGGED IN SUCCESSFULLY");
 				return u;
 			}
 			
 		}
 		catch(SQLException e) {
+			log.warn("USER FAILED TO LOGIN");
 			System.out.println("LOGIN FAILED");
 			e.printStackTrace();
 		}

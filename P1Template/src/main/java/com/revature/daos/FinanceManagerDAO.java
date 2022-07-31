@@ -7,10 +7,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.revature.models.Reimbursement;
 import com.revature.utils.ConnectionUtil;
 
 public class FinanceManagerDAO implements FinanceManagerDAOInterface{
+	public static Logger log = LogManager.getLogger();
 	UserDAO uDAO = new UserDAO();
 	ReimbursementStatusDAO rsDAO = new ReimbursementStatusDAO();
 	ReimbursementTypeDAO rtDAO = new ReimbursementTypeDAO();
@@ -36,10 +40,11 @@ public class FinanceManagerDAO implements FinanceManagerDAOInterface{
 				reimbursement.setReimb_type(rtDAO.getReimbursementTypeById(rs.getInt("reimb_type_id")));
 				reimbursements.add(reimbursement);
 			}
-			
+			log.info("GET ALL REIMBURSEMENTS SUCCESSFUL");
 			return reimbursements;
 		}
 		catch(SQLException e) {
+			log.warn("GET ALL REIMBURSEMENTS FAILED");
 			System.out.println("GET ALL REIMBURSEMENTS FAILED");
 			e.printStackTrace();
 		}
@@ -72,9 +77,11 @@ public class FinanceManagerDAO implements FinanceManagerDAOInterface{
 				reimbursements.add(reimbursement);
 			}
 			
+			log.info("GET REIMBURSEMENTS BY STATUS ID SUCCESSFUL");
 			return reimbursements;
 		}
 		catch(SQLException e) {
+			log.warn("GET REIMBURSEMENTS BY STATUS ID FAILED");
 			System.out.println("GET REIMBURSEMENTS BY STATUS ID FAILED");
 			e.printStackTrace();
 		}
@@ -91,9 +98,11 @@ public class FinanceManagerDAO implements FinanceManagerDAOInterface{
 			ps.setInt(2, reimb_id);
 			ps.executeUpdate();
 			
+			log.info("UPDATE REIMBURSEMENT STATUS SUCCESSFUL");
 			return true;
 		}
 		catch(SQLException e) {
+			log.warn("UPDATE REIMBURSEMENT STATUS FAILED");
 			System.out.println("UPDATE REIMBURSEMENT STATUS FAILED");
 			e.printStackTrace();
 		}

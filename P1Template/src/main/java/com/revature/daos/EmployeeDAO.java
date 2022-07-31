@@ -7,10 +7,14 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.revature.models.Reimbursement;
 import com.revature.utils.ConnectionUtil;
 
 public class EmployeeDAO implements EmployeeDAOInterface{
+	public static Logger log = LogManager.getLogger();
 	UserDAO uDAO = new UserDAO();
 	ReimbursementStatusDAO rsDAO = new ReimbursementStatusDAO();
 	ReimbursementTypeDAO rtDAO = new ReimbursementTypeDAO();
@@ -38,10 +42,11 @@ public class EmployeeDAO implements EmployeeDAOInterface{
 				reimbursement.setReimb_type(rtDAO.getReimbursementTypeById(rs.getInt("reimb_type_id")));
 				reimbursements.add(reimbursement);
 			}
-			
+			log.info("GET ALL USER REIMBURSEMENTS SUCCESSFUL");
 			return reimbursements;
 		}
 		catch(SQLException e) {
+			log.warn("GET ALL USER REIMBURSEMENTS FAILED");
 			System.out.println("GET ALL USER REIMBURSEMENTS FAILED");
 			e.printStackTrace();
 		}
@@ -62,9 +67,11 @@ public class EmployeeDAO implements EmployeeDAOInterface{
 			ps.setInt(5, reimbursement.getReimb_type_id());
 			ps.executeUpdate();
 			
+			log.info("INSERT REIMBURSEMENT SUCCESSFUL");
 			return true;
 		}
 		catch(SQLException e) {
+			log.warn("INSERT REIMBURSEMENT FAILED");
 			System.out.println("INSERT REIMBURSEMENT FAILED");
 			e.printStackTrace();
 		}
