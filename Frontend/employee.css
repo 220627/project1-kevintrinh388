@@ -1,0 +1,8 @@
+body {
+  background-image: url(./static/user_pic.jpg);
+  background-size: cover;
+}
+
+#userInterface {
+  background-color: rgba(197, 197, 197, 0.76);
+}
