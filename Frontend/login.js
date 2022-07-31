@@ -9,7 +9,9 @@ async function loginFunction() {
     username: username,
     password: password,
   };
-
+  if (username === "" || password === "") {
+    alert("Please enter a username and password");
+  }
   let config = {
     method: "POST",
     body: JSON.stringify(user),
