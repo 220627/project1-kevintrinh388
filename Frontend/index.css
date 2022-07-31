@@ -4,6 +4,10 @@
   --primary-color: #3a4052;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -33,7 +37,7 @@ h1 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #fff;
+  color: antiquewhite;
   padding: 0 20px;
 }
 
@@ -92,6 +96,7 @@ h1 {
 #about {
   padding: 40px;
   text-align: center;
+  background-color: antiquewhite;
 }
 
 #about p {
