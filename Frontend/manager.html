@@ -57,26 +57,54 @@
       </div>
 
       <br />
+
+      <div>
+        <h3>Update a reimbursement:</h3>
+        <input
+          type="number"
+          placeholder="Enter ReimbursementID"
+          id="reimb_id"
+          min="0"
+        />
+        <div>
+          <!-- radio -->
+          <input
+            type="radio"
+            id="approve"
+            name="updateType"
+            value="2"
+            checked
+          />
+          <label for="approve">Approve</label>
+          <input type="radio" id="deny" name="updateType" value="3" />
+          <label for="deny">Deny</label>
+
+          <button type="button" id="updateButton" class="btn btn-primary">
+            Update
+          </button>
+      </div>
+
       <br />
-      <div class="col-sm-112">
-        <button class="btn btn-secondary btn-sm">
+      <br />
+      <div>
+        <button id="viewYourReimbursementsButton" class="btn btn-secondary">
           View your reimbursements
         </button>
-        <button class="btn btn-secondary btn-sm">
+        <button id="viewAllReimbursementsButton" class="btn btn-secondary">
           View all reimbursements
         </button>
-        <button class="btn btn-secondary btn-sm">
+        <button id="viewPendingReimbursementsButton" class="btn btn-secondary">
           View pending reimbursements
         </button>
-        <button class="btn btn-secondary btn-sm">
-          View accepted reimbursements
+        <button id="viewApprovedReimbursementsButton" class="btn btn-secondary">
+          View approved reimbursements
         </button>
-        <button class="btn btn-secondary btn-sm">
+        <button id="viewDeniedReimbursementsButton" class="btn btn-secondary">
           View denied reimbursements
         </button>
       </div>
       <div id="table-row" class="row">
-        <h3>Your reimbursements:</h3>
+        <h3 id="tableHeader">Your reimbursements:</h3>
         <table
           class="table table-dark table-bordered table-hover table-striped"
         >

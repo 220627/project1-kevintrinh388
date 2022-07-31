@@ -41,6 +41,7 @@ public class Launcher {
 		app.get("/reimbursements/:reimb_author", ec.getUserReimbursementsHandler);
 		app.post("/reimbursements", ec.insertReimbursementHandler);
 		
+		app.get("/reimbursements/manager/all", fmc.getAllReimbursementsHandler);
 		app.get("/reimbursements/manager/:reimb_status_id", fmc.getReimbursementsByStatusIdHandler);
 		app.put("/reimbursements/status/manager/:reimb_id", fmc.updateReimbursementStatus);
 	}

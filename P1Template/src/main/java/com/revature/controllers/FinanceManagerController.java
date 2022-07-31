@@ -11,6 +11,15 @@ import io.javalin.http.Handler;
 public class FinanceManagerController {
 	FinanceManagerDAO fmDAO = new FinanceManagerDAO();
 	
+	public Handler getAllReimbursementsHandler = (ctx) -> {
+		ArrayList<Reimbursement> reimbursements = fmDAO.getAllReimbursements();
+		Gson gson = new Gson();
+		String jsonReimbursements = gson.toJson(reimbursements);
+		
+		ctx.result(jsonReimbursements);
+		ctx.status(200);
+	};
+	
 	public Handler getReimbursementsByStatusIdHandler = (ctx) -> {
 		int reimb_status_id = Integer.parseInt(ctx.pathParam("reimb_status_id"));
 		ArrayList<Reimbursement> reimbursements = fmDAO.getReimbursementsByStatusId(reimb_status_id);
